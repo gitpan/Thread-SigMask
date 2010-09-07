@@ -1,6 +1,6 @@
 ---
 name: Thread-SigMask
-version: 0.001
+version: 0.002
 author:
   - 'Leon Timmermans <leont@cpan.org>'
 abstract: Thread specific signal masks
@@ -19,7 +19,7 @@ configure_requires:
 provides:
   Thread::SigMask:
     file: lib/Thread/SigMask.pm
-    version: 0.001
+    version: 0.002
 generated_by: Module::Build version 0.340201
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
