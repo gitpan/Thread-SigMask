@@ -1,33 +1,42 @@
-use 5.006;
+
 use strict;
 use warnings;
-use Module::Build;
 
-if ($^O eq 'MSWin32') {
-	print "No support for OS\n";
-	exit;
-}
+use Module::Build 0.3601;
 
-my $builder = Module::Build->new(
-	module_name         => 'Thread::SigMask',
-	license             => 'perl',
-	dist_author         => q{Leon Timmermans <leont@cpan.org>},
-	dist_version_from   => 'lib/Thread/SigMask.pm',
-	configure_requires  => {
-		'Module::Build' => 0.28,
-	},
-	build_requires      => {
-		'ExtUtils::CBuilder' => 0,
-		'Module::Build' => 0.28,
-		'Test::More'    => 0,
-	},
-	requires            => {
-		perl            => 5.006,
-		'Sub::Exporter' => 0,
-	},
-	add_to_cleanup      => [ 'Thread-SigMask-*' ],
-	create_makefile_pl  => 'small',
-	sign                => 1,
+
+my %module_build_args = (
+  'build_requires' => {
+    'File::Find' => '0',
+    'File::Temp' => '0',
+    'Module::Build' => '0.3601',
+    'POSIX' => '0',
+    'Test::More' => '0'
+  },
+  'configure_requires' => {
+    'Module::Build' => '0.3601'
+  },
+  'dist_abstract' => 'Thread specific signal masks',
+  'dist_author' => [
+    'Leon Timmermans <leont@cpan.org>'
+  ],
+  'dist_name' => 'Thread-SigMask',
+  'dist_version' => '0.003',
+  'license' => 'perl',
+  'module_name' => 'Thread::SigMask',
+  'recommends' => {},
+  'recursive_test_files' => 1,
+  'requires' => {
+    'Sub::Exporter' => '0',
+    'XSLoader' => '0',
+    'perl' => '5.008',
+    'strict' => '0',
+    'warnings' => '0'
+  },
+  'script_files' => []
 );
 
-$builder->create_build_script();
+
+my $build = Module::Build->new(%module_build_args);
+
+$build->create_build_script;

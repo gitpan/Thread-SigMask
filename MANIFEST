@@ -1,14 +1,17 @@
 Build.PL
 Changes
-lib/Thread/SigMask.pm
-lib/Thread/SigMask.xs
+INSTALL
 LICENSE
 MANIFEST
-README
-t/00-load.t
-t/10-basics.t
-t/pod-coverage.t
-t/pod.t
-Makefile.PL
+META.json
 META.yml
-SIGNATURE    Added here by Module::Build
+README
+SIGNATURE
+dist.ini
+lib/Thread/SigMask.pm
+lib/Thread/SigMask.xs
+t/00-compile.t
+t/10-basics.t
+t/release-kwalitee.t
+t/release-pod-coverage.t
+t/release-pod-syntax.t

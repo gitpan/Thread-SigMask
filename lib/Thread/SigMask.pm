@@ -1,4 +1,7 @@
 package Thread::SigMask;
+BEGIN {
+  $Thread::SigMask::VERSION = '0.003';
+}
 
 use strict;
 use warnings FATAL => 'all';
@@ -6,12 +9,13 @@ use warnings FATAL => 'all';
 use XSLoader;
 use Sub::Exporter -setup => { exports => [qw/sigmask/], groups => { default => [qw/sigmask/] } };
 
-our $VERSION = '0.002';
-XSLoader::load(__PACKAGE__, $VERSION);
+XSLoader::load(__PACKAGE__, __PACKAGE__->VERSION);
 
-1;    # End of Thread::SigMask
+1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
@@ -19,22 +23,22 @@ Thread::SigMask - Thread specific signal masks
 
 =head1 VERSION
 
-Version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
-    use Thread::SigMask qw/sigset/;
-	use POSIX qw/SIG_BLOCK SIG_UNBLOCK/;
+ use Thread::SigMask qw/sigset/;
+ use POSIX qw/SIG_BLOCK SIG_UNBLOCK/;
 	
-    sigmask(SIG_BLOCK, $sigset);
-	...
-    sigmask(SIG_UNBLOCK, $sigset);
+ sigmask(SIG_BLOCK, $sigset);
+ ...
+ sigmask(SIG_UNBLOCK, $sigset);
 
 =head1 DESCRIPTION
 
-This module provides per-thread signal masks. On non-threaded perl's, it will be effectively the same as POSIX::sigprocmask. The interface works exactly the same as sigprocmask.
+This module provides per-thread signal masks. On non-threaded perls it will be effectively the same as POSIX::sigprocmask. The interface works exactly the same as sigprocmask.
 
-=head1 SUBROUTINES
+=head1 FUNCTIONS
 
 =head2 sigmask($how, $newset, $oldset = undef)
 
@@ -62,56 +66,25 @@ If oldset is defined, the previous value of the signal mask is stored in oldset.
 
 L<Signal::Mask>
 
-=head1 AUTHOR
-
-Leon Timmermans, C<< <leont at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-thread-sigmask at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Thread-SigMask>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Thread::SigMask
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Thread-SigMask>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Thread-SigMask>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Thread-SigMask>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Thread-SigMask/>
-
-=back
-
 =head1 ACKNOWLEDGEMENTS
 
 Parts of this documentation is shamelessly stolen from L<POSIX> and Linux' L<sigprocmask(2)>.
 
-=head1 LICENSE AND COPYRIGHT
+=head1 AUTHOR
 
-Copyright 2010 Leon Timmermans.
+Leon Timmermans <leont@cpan.org>
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+=head1 COPYRIGHT AND LICENSE
 
-See http://dev.perl.org/licenses/ for more information.
+This software is copyright (c) 2010 by Leon Timmermans.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
+
+#ABSTRACT: Thread specific signal masks
+
