@@ -1,21 +1,23 @@
 package Thread::SigMask;
-BEGIN {
-  $Thread::SigMask::VERSION = '0.003';
-}
-
+$Thread::SigMask::VERSION = '0.004';
 use strict;
 use warnings FATAL => 'all';
 
 use XSLoader;
-use Sub::Exporter -setup => { exports => [qw/sigmask/], groups => { default => [qw/sigmask/] } };
+use Exporter 5.57 'import';
+our @EXPORT = qw/sigmask/;
 
 XSLoader::load(__PACKAGE__, __PACKAGE__->VERSION);
 
 1;
 
+#ABSTRACT: Thread specific signal masks
 
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -23,7 +25,7 @@ Thread::SigMask - Thread specific signal masks
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -82,9 +84,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-
-#ABSTRACT: Thread specific signal masks
-
